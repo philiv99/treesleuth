@@ -4,17 +4,26 @@
  * Main gameplay screen with tree profile, evidence tiles, and guess interface.
  */
 
-import { useEffect } from 'react'
+import { useEffect, useRef } from 'react'
 import { useGameState } from '../useGameState'
 import { EvidenceTypeLabels, EvidenceTypeIcons } from '../types'
-import type { EvidenceType, ConfidenceLevel } from '../types'
+import type { EvidenceType, ConfidenceLevel, Evidence } from '../types'
+import { audioManager } from '../../engine'
 import './PlayingScene.css'
 
 export function PlayingScene() {
   const { state, revealEvidence, makeGuess, tickTimer, goToTitle } = useGameState()
   const currentCase = state.currentCase
+  const lastTimeRef = useRef(currentCase?.timeRemaining ?? 0)
 
-  // Timer effect
+  // Unlock audio on first interaction
+  useEffect(() => {
+    const unlock = () => audioManager.unlock()
+    document.addEventListener('click', unlock, { once: true })
+    return () => document.removeEventListener('click', unlock)
+  }, [])
+
+  // Timer effect with sound
   useEffect(() => {
     if (!currentCase || currentCase.isComplete) return
 
@@ -24,6 +33,21 @@ export function PlayingScene() {
 
     return () => clearInterval(timer)
   }, [currentCase, tickTimer])
+
+  // Timer warning sounds
+  useEffect(() => {
+    if (!currentCase) return
+    const time = currentCase.timeRemaining
+    
+    // Play warning at 30, 20, 10 seconds
+    if (time === 30 || time === 20 || time === 10) {
+      audioManager.play('timerWarning')
+    } else if (time <= 10 && time > 0 && time !== lastTimeRef.current) {
+      audioManager.play('timerTick')
+    }
+    
+    lastTimeRef.current = time
+  }, [currentCase?.timeRemaining])
 
   if (!currentCase) {
     return (
@@ -43,11 +67,18 @@ export function PlayingScene() {
   }
 
   const handleRevealEvidence = (type: string) => {
+    audioManager.play('reveal')
     revealEvidence(type)
   }
 
   const handleMakeGuess = (speciesId: string, confidence: ConfidenceLevel) => {
+    audioManager.play('submit')
     makeGuess(speciesId, confidence)
+  }
+
+  const handleBackClick = () => {
+    audioManager.play('click')
+    goToTitle()
   }
 
   // Get initial clue text
@@ -57,12 +88,14 @@ export function PlayingScene() {
     return `Leaf type: ${leafType} • Habitat: ${habitat}`
   }
 
+  const isTimeLow = timeRemaining <= 30
+
   return (
     <div className="playing-scene">
       {/* Header with timer and score info */}
       <header className="playing-header">
-        <button className="back-btn" onClick={goToTitle}>✕</button>
-        <div className="timer">
+        <button className="back-btn" onClick={handleBackClick}>✕</button>
+        <div className={`timer ${isTimeLow ? 'warning' : ''}`}>
           <span className="timer-icon">⏱️</span>
           <span className="timer-value">{formatTime(timeRemaining)}</span>
         </div>
@@ -119,11 +152,7 @@ export function PlayingScene() {
 interface EvidenceTileProps {
   type: EvidenceType
   isRevealed: boolean
-  evidence: {
-    title: string
-    description: string
-    keyFeatures: string[]
-  }
+  evidence: Evidence
   onReveal: () => void
 }
 
@@ -147,6 +176,19 @@ function EvidenceTile({ type, isRevealed, evidence, onReveal }: EvidenceTileProp
         <span className="tile-icon">{icon}</span>
         <span className="tile-label">{label}</span>
       </div>
+      
+      {/* Optional photo */}
+      {evidence.imageUrl && (
+        <div className="tile-image-container">
+          <img 
+            src={evidence.imageUrl} 
+            alt={`${label} evidence`}
+            className="tile-image"
+            loading="lazy"
+          />
+        </div>
+      )}
+      
       <p className="tile-description">{evidence.description}</p>
       <ul className="tile-features">
         {evidence.keyFeatures.slice(0, 2).map((feature, i) => (
@@ -179,6 +221,16 @@ function GuessInterface({ onGuess }: GuessInterfaceProps) {
     s.scientificName.toLowerCase().includes(searchQuery.toLowerCase())
   )
 
+  const handleSelectSpecies = (speciesId: string) => {
+    audioManager.play('select')
+    setSelectedSpecies(speciesId)
+  }
+
+  const handleSelectConfidence = (level: ConfidenceLevel) => {
+    audioManager.play('click')
+    setConfidence(level)
+  }
+
   const handleSubmit = () => {
     if (selectedSpecies) {
       onGuess(selectedSpecies, confidence)
@@ -201,7 +253,7 @@ function GuessInterface({ onGuess }: GuessInterfaceProps) {
             <button
               key={species.id}
               className={`species-option ${selectedSpecies === species.id ? 'selected' : ''}`}
-              onClick={() => setSelectedSpecies(species.id)}
+              onClick={() => handleSelectSpecies(species.id)}
             >
               <span className="species-name">{species.commonName}</span>
               <span className="species-family">{species.family}</span>
@@ -218,7 +270,7 @@ function GuessInterface({ onGuess }: GuessInterfaceProps) {
             <button
               key={level}
               className={`confidence-btn ${confidence === level ? 'selected' : ''} ${level === 90 ? 'risky' : ''}`}
-              onClick={() => setConfidence(level)}
+              onClick={() => handleSelectConfidence(level)}
             >
               <span className="conf-percent">{level}%</span>
               <span className="conf-mult">×{level === 50 ? '1.0' : level === 75 ? '1.3' : '1.7'}</span>

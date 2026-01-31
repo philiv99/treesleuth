@@ -6,14 +6,29 @@
 
 import type { TreeSpecies, Evidence } from '../types'
 
-// Helper to create evidence objects
+// Helper to create evidence objects with optional imageUrl
 function createEvidence(
   type: Evidence['type'],
   title: string,
   description: string,
-  keyFeatures: string[]
+  keyFeatures: string[],
+  imageUrl?: string
 ): Evidence {
-  return { type, title, description, keyFeatures }
+  return { type, title, description, keyFeatures, imageUrl }
+}
+
+// Sample images from Unsplash (free to use)
+// These are placeholder URLs - in production you'd use your own hosted images
+const SAMPLE_IMAGES = {
+  redMapleLeaf: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=300&fit=crop',
+  redMapleBark: 'https://images.unsplash.com/photo-1518495973542-4542c06a5843?w=400&h=300&fit=crop',
+  oakLeaf: 'https://images.unsplash.com/photo-1476673160081-cf065607f449?w=400&h=300&fit=crop',
+  barkTexture: 'https://images.unsplash.com/photo-1517816428104-797678c7cf0c?w=400&h=300&fit=crop',
+  birchBark: 'https://images.unsplash.com/photo-1518882605630-8996a190cd50?w=400&h=300&fit=crop',
+  pineNeedles: 'https://images.unsplash.com/photo-1418065460487-3e41a6c84dc5?w=400&h=300&fit=crop',
+  pineCone: 'https://images.unsplash.com/photo-1512418490979-92798cec1380?w=400&h=300&fit=crop',
+  forestHabitat: 'https://images.unsplash.com/photo-1448375240586-882707db888b?w=400&h=300&fit=crop',
+  wetlandHabitat: 'https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=400&h=300&fit=crop',
 }
 
 export const treeSpecies: TreeSpecies[] = [
@@ -36,10 +51,12 @@ export const treeSpecies: TreeSpecies[] = [
     evidence: {
       leaf: createEvidence('leaf', 'Red Maple Leaf', 
         '3-5 lobed leaf with serrated edges. Lobes have shallow V-shaped sinuses. Leaf stem (petiole) is often red.',
-        ['Shallow V-shaped sinuses', 'Red petiole', 'Serrated margins', '3-5 lobes']),
+        ['Shallow V-shaped sinuses', 'Red petiole', 'Serrated margins', '3-5 lobes'],
+        SAMPLE_IMAGES.redMapleLeaf),
       bark: createEvidence('bark', 'Red Maple Bark',
         'Young trees have smooth, light gray bark. Mature trees develop darker, scaly ridges that form long plates.',
-        ['Gray and scaly', 'Long vertical ridges', 'Darker with age']),
+        ['Gray and scaly', 'Long vertical ridges', 'Darker with age'],
+        SAMPLE_IMAGES.barkTexture),
       seed: createEvidence('seed', 'Red Maple Seeds',
         'Paired samaras (helicopter seeds) at narrow angle, about 0.5-1 inch long. Ripen in spring, earlier than most maples.',
         ['Paired samaras', 'Narrow angle', 'Ripen in spring', 'Red color when fresh']),
@@ -269,7 +286,8 @@ export const treeSpecies: TreeSpecies[] = [
         ['Doubly serrated', 'Oval to triangular', 'Pointed tip', '2-4 inches']),
       bark: createEvidence('bark', 'Paper Birch Bark',
         'Distinctive chalky white bark that peels in papery horizontal strips. Orange inner bark visible.',
-        ['Chalky white', 'Peels in strips', 'Orange inner bark', 'Horizontal lenticels']),
+        ['Chalky white', 'Peels in strips', 'Orange inner bark', 'Horizontal lenticels'],
+        SAMPLE_IMAGES.birchBark),
       seed: createEvidence('seed', 'Paper Birch Seeds',
         'Tiny winged nutlets in cylindrical catkins (seed clusters). Catkins disintegrate when ripe.',
         ['Tiny winged nutlets', 'Cylindrical catkins', 'Disintegrate when ripe']),
@@ -284,7 +302,8 @@ export const treeSpecies: TreeSpecies[] = [
         ['Northern species', 'Canada and northern US', 'Mountains in south']),
       habitat: createEvidence('habitat', 'Paper Birch Habitat',
         'Found in northern forests, often on disturbed sites. Pioneer species after fire. Needs cool climate.',
-        ['Northern forests', 'Disturbed sites', 'Pioneer species', 'Cool climate']),
+        ['Northern forests', 'Disturbed sites', 'Pioneer species', 'Cool climate'],
+        SAMPLE_IMAGES.forestHabitat),
     },
   },
   {
@@ -344,13 +363,15 @@ export const treeSpecies: TreeSpecies[] = [
     evidence: {
       leaf: createEvidence('leaf', 'Eastern White Pine Needles',
         'Soft, flexible needles in bundles of 5. Bluish-green, 3-5 inches long. Only 5-needle pine in the East.',
-        ['5 needles per bundle', 'Soft and flexible', 'Bluish-green', '3-5 inches']),
+        ['5 needles per bundle', 'Soft and flexible', 'Bluish-green', '3-5 inches'],
+        SAMPLE_IMAGES.pineNeedles),
       bark: createEvidence('bark', 'Eastern White Pine Bark',
         'Young trees: smooth, greenish-gray. Mature: dark gray-brown with deep furrows and broad ridges.',
         ['Smooth when young', 'Deep furrows on old trees', 'Gray to brown']),
       seed: createEvidence('seed', 'Eastern White Pine Cones',
         'Long, slender cones 4-8 inches. Scales tipped with white resin. Hang down from branches.',
-        ['Long and slender', '4-8 inches', 'Resin-tipped scales', 'Pendant']),
+        ['Long and slender', '4-8 inches', 'Resin-tipped scales', 'Pendant'],
+        SAMPLE_IMAGES.pineCone),
       bud: createEvidence('bud', 'Eastern White Pine Buds',
         'Small, oval, yellowish-brown buds with papery scales. Not resinous.',
         ['Small and oval', 'Yellowish-brown', 'Not resinous']),
@@ -362,7 +383,8 @@ export const treeSpecies: TreeSpecies[] = [
         ['Northeastern focus', 'Appalachians south']),
       habitat: createEvidence('habitat', 'Eastern White Pine Habitat',
         'Found in mixed forests on well-drained sandy or rocky soils. Pioneer species on old fields.',
-        ['Mixed forests', 'Sandy/rocky soil', 'Pioneer species']),
+        ['Mixed forests', 'Sandy/rocky soil', 'Pioneer species'],
+        SAMPLE_IMAGES.forestHabitat),
     },
   },
   {

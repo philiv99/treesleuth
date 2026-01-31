@@ -4,14 +4,25 @@
  * Shows the outcome of a guess with explanation and score breakdown.
  */
 
+import { useEffect } from 'react'
 import { useGameState } from '../useGameState'
 import { calculateScore, formatScore } from '../logic/scoring'
 import { getSpeciesById } from '../data/species'
+import { audioManager } from '../../engine'
 import './ResultsScene.css'
 
 export function ResultsScene() {
   const { state, goToTitle, nextTree } = useGameState()
   const currentCase = state.currentCase
+
+  // Play correct/wrong sound on mount
+  useEffect(() => {
+    if (currentCase?.isCorrect) {
+      audioManager.play('correct')
+    } else {
+      audioManager.play('wrong')
+    }
+  }, [])
 
   if (!currentCase) {
     return (
@@ -36,6 +47,16 @@ export function ResultsScene() {
 
   // Get guessed species info if they made a guess
   const guessedSpecies = guess ? getSpeciesById(guess.speciesId) : null
+
+  const handleGoToTitle = () => {
+    audioManager.play('click')
+    goToTitle()
+  }
+
+  const handleNextTree = () => {
+    audioManager.play('click')
+    nextTree()
+  }
 
   return (
     <div className="results-scene">
@@ -153,10 +174,10 @@ export function ResultsScene() {
 
         {/* Actions */}
         <footer className="results-actions">
-          <button className="btn-primary" onClick={goToTitle}>
+          <button className="btn-primary" onClick={handleGoToTitle}>
             Back to Menu
           </button>
-          <button className="btn-secondary" onClick={nextTree}>
+          <button className="btn-secondary" onClick={handleNextTree}>
             Next Tree
           </button>
         </footer>

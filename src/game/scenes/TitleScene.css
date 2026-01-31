@@ -10,6 +10,30 @@
   min-height: 100vh;
   padding: 2rem;
   gap: 2rem;
+  position: relative;
+}
+
+/* Sound Toggle */
+.sound-toggle {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--ld-paper);
+  border: var(--border-thin);
+  border-radius: 8px;
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: background var(--transition-fast), transform var(--transition-fast);
+}
+
+.sound-toggle:hover {
+  background: var(--ld-mint);
+  transform: scale(1.05);
 }
 
 /* Header */
