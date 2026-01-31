@@ -1,0 +1,127 @@
+/**
+ * Mode Select Scene Styles
+ */
+
+.mode-select-scene {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.mode-select-card {
+  background: var(--ld-paper);
+  border: var(--border-thick);
+  border-radius: 16px;
+  box-shadow: var(--shadow-lg);
+  max-width: 450px;
+  width: 100%;
+  overflow: hidden;
+}
+
+/* Header */
+.mode-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.25rem 1.5rem;
+  background: var(--ld-mint);
+  border-bottom: var(--border-thick);
+}
+
+.mode-header .back-btn {
+  background: var(--ld-paper);
+  border: var(--border-thin);
+  border-radius: 6px;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.875rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background var(--transition-fast);
+}
+
+.mode-header .back-btn:hover {
+  background: var(--ld-cream);
+}
+
+.mode-header h2 {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  color: var(--ld-ink);
+  margin: 0;
+}
+
+/* Mode Options */
+.mode-options {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.mode-option {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 1.25rem;
+  background: var(--ld-cream);
+  border: var(--border-thin);
+  border-radius: 12px;
+  cursor: pointer;
+  text-align: left;
+  transition: all var(--transition-fast);
+  position: relative;
+}
+
+.mode-option:hover {
+  border-color: var(--ld-moss);
+  transform: translateY(-2px);
+}
+
+.mode-option.active {
+  background: white;
+  border-color: var(--ld-pop);
+  box-shadow: var(--shadow-sm);
+}
+
+.mode-option.active:hover {
+  box-shadow: var(--shadow-md);
+}
+
+.mode-option .mode-icon {
+  font-size: 2rem;
+  flex-shrink: 0;
+}
+
+.mode-option .mode-info {
+  flex: 1;
+}
+
+.mode-option .mode-info h3 {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  color: var(--ld-ink);
+  margin: 0 0 0.25rem 0;
+}
+
+.mode-option .mode-info p {
+  font-size: 0.875rem;
+  color: var(--ld-forest);
+  margin: 0;
+}
+
+.mode-badge {
+  font-size: 0.625rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  background: var(--ld-forest);
+  color: white;
+}
+
+.mode-badge.ready {
+  background: var(--ld-leaf);
+}

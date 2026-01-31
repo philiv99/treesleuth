@@ -1,0 +1,321 @@
+/**
+ * Results Scene Styles
+ */
+
+.results-scene {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.results-card {
+  background: var(--ld-paper);
+  border: var(--border-thick);
+  border-radius: 16px;
+  box-shadow: var(--shadow-lg);
+  max-width: 500px;
+  width: 100%;
+  overflow: hidden;
+}
+
+/* Header */
+.results-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 1.5rem;
+  text-align: center;
+}
+
+.results-header.correct {
+  background: var(--ld-mint);
+}
+
+.results-header.incorrect {
+  background: var(--ld-peach);
+}
+
+.result-icon {
+  font-size: 2.5rem;
+}
+
+.result-title {
+  font-family: var(--font-display);
+  font-size: 1.75rem;
+  color: var(--ld-ink);
+  margin: 0;
+}
+
+/* Answer Section */
+.answer-section {
+  padding: 1.5rem;
+  border-bottom: var(--border-thin);
+}
+
+.answer-card {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background: var(--ld-cream);
+  border: var(--border-thin);
+  border-radius: 12px;
+  padding: 1rem;
+}
+
+.answer-icon {
+  font-size: 2.5rem;
+}
+
+.answer-info {
+  flex: 1;
+}
+
+.answer-name {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  color: var(--ld-ink);
+  margin: 0 0 0.25rem 0;
+}
+
+.answer-scientific {
+  font-style: italic;
+  color: var(--ld-forest);
+  margin: 0 0 0.25rem 0;
+  font-size: 0.875rem;
+}
+
+.answer-family {
+  display: inline-block;
+  background: var(--ld-mint);
+  color: var(--ld-ink);
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: capitalize;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+}
+
+.your-guess {
+  margin-top: 1rem;
+  padding: 0.75rem;
+  background: rgba(251, 43, 87, 0.1);
+  border-radius: 8px;
+  text-align: center;
+}
+
+.guess-label {
+  font-size: 0.875rem;
+  color: var(--ld-forest);
+  display: block;
+}
+
+.guess-name {
+  font-weight: 700;
+  color: var(--ld-pop);
+}
+
+/* Score Section */
+.score-section {
+  padding: 1.5rem;
+  border-bottom: var(--border-thin);
+}
+
+.score-section h4 {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  color: var(--ld-ink);
+  margin: 0 0 1rem 0;
+}
+
+.score-breakdown {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.score-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 0;
+  border-bottom: 1px dashed var(--ld-moss);
+}
+
+.score-row:last-child {
+  border-bottom: none;
+}
+
+.score-row .score-label {
+  color: var(--ld-forest);
+  font-size: 0.875rem;
+}
+
+.score-row .score-value {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  color: var(--ld-ink);
+}
+
+.score-row.penalty .score-value {
+  color: var(--ld-pop);
+}
+
+.score-row.bonus .score-value {
+  color: var(--ld-leaf);
+}
+
+.score-row.total {
+  margin-top: 0.5rem;
+  padding-top: 0.75rem;
+  border-top: 2px solid var(--ld-ink);
+  border-bottom: none;
+}
+
+.score-row.total .score-label {
+  font-weight: 700;
+  color: var(--ld-ink);
+}
+
+.score-row.total .score-value {
+  font-size: 1.25rem;
+}
+
+/* Explanation Section */
+.explanation-section {
+  padding: 1.5rem;
+  border-bottom: var(--border-thin);
+}
+
+.explanation-section h4 {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  color: var(--ld-ink);
+  margin: 0 0 1rem 0;
+}
+
+.key-features {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.feature-tag {
+  background: var(--ld-mint);
+  border: 1px solid var(--ld-ink);
+  border-radius: 4px;
+  padding: 0.25rem 0.5rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--ld-ink);
+}
+
+.tricky-note,
+.fun-fact {
+  display: flex;
+  gap: 0.75rem;
+  background: var(--ld-cream);
+  border-radius: 8px;
+  padding: 0.75rem;
+  margin-top: 0.75rem;
+}
+
+.tricky-note p,
+.fun-fact p {
+  margin: 0;
+  font-size: 0.875rem;
+  color: var(--ld-forest);
+  line-height: 1.5;
+}
+
+.tricky-icon,
+.fact-icon {
+  font-size: 1.25rem;
+  flex-shrink: 0;
+}
+
+/* Lookalikes Section */
+.lookalikes-section {
+  padding: 1.5rem;
+  border-bottom: var(--border-thin);
+}
+
+.lookalikes-section h4 {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  color: var(--ld-ink);
+  margin: 0 0 1rem 0;
+}
+
+.lookalikes-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.lookalike-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--ld-paper);
+  border: var(--border-thin);
+  border-radius: 8px;
+  padding: 0.5rem 0.75rem;
+}
+
+.lookalike-icon {
+  font-size: 1.25rem;
+}
+
+.lookalike-name {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--ld-ink);
+}
+
+/* Actions */
+.results-actions {
+  display: flex;
+  gap: 1rem;
+  padding: 1.5rem;
+  background: var(--ld-cream);
+}
+
+.results-actions .btn-primary,
+.results-actions .btn-secondary {
+  flex: 1;
+  padding: 1rem;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 700;
+  border: var(--border-thick);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.results-actions .btn-primary {
+  background: var(--ld-pop);
+  color: white;
+  box-shadow: var(--shadow-sm);
+}
+
+.results-actions .btn-secondary {
+  background: var(--ld-mint);
+  color: var(--ld-ink);
+}
+
+.results-actions .btn-primary:hover,
+.results-actions .btn-secondary:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: var(--shadow-md);
+}
+
+.results-actions .btn-primary:active,
+.results-actions .btn-secondary:active {
+  transform: translate(1px, 1px);
+  box-shadow: none;
+}

@@ -1,0 +1,409 @@
+/**
+ * Playing Scene Styles
+ */
+
+.playing-scene {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  gap: 1.5rem;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* Header */
+.playing-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 1rem;
+  background: var(--ld-paper);
+  border: var(--border-thick);
+  border-radius: 12px;
+  box-shadow: var(--shadow-sm);
+}
+
+.back-btn {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--ld-cream);
+  border: var(--border-thin);
+  border-radius: 8px;
+  font-size: 1.25rem;
+  cursor: pointer;
+}
+
+.back-btn:hover {
+  background: var(--ld-mint);
+}
+
+.timer,
+.evidence-count {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 700;
+}
+
+.timer-icon,
+.evidence-icon {
+  font-size: 1.25rem;
+}
+
+.timer-value {
+  font-family: var(--font-mono);
+  font-size: 1.25rem;
+  color: var(--ld-ink);
+}
+
+.evidence-value {
+  font-family: var(--font-mono);
+  color: var(--ld-forest);
+}
+
+/* Tree Profile */
+.tree-profile {
+  background: var(--ld-mint);
+  border: var(--border-thick);
+  border-radius: 16px;
+  padding: 1.5rem;
+  text-align: center;
+}
+
+.tree-silhouette {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.tree-icon {
+  font-size: 4rem;
+}
+
+.mystery-label {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  color: var(--ld-ink);
+}
+
+.initial-clue {
+  background: var(--ld-paper);
+  border: var(--border-thin);
+  border-radius: 8px;
+  padding: 0.75rem 1rem;
+}
+
+.clue-label {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--ld-forest);
+  display: block;
+  margin-bottom: 0.25rem;
+}
+
+.clue-text {
+  font-weight: 700;
+  color: var(--ld-ink);
+}
+
+/* Evidence Section */
+.evidence-section h3,
+.guess-section h3 {
+  font-family: var(--font-display);
+  font-size: 1.125rem;
+  color: var(--ld-ink);
+  margin-bottom: 1rem;
+}
+
+.evidence-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 0.75rem;
+}
+
+/* Evidence Tile */
+.evidence-tile {
+  background: var(--ld-paper);
+  border: var(--border-thick);
+  border-radius: 12px;
+  padding: 1rem;
+  text-align: center;
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.evidence-tile.face-down {
+  background: var(--ld-mint);
+  cursor: pointer;
+  box-shadow: var(--shadow-sm);
+}
+
+.evidence-tile.face-down:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: var(--shadow-md);
+}
+
+.evidence-tile.face-down:active {
+  transform: translate(1px, 1px);
+  box-shadow: none;
+}
+
+.evidence-tile .tile-icon {
+  font-size: 2rem;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.evidence-tile .tile-label {
+  font-weight: 700;
+  color: var(--ld-ink);
+  display: block;
+}
+
+.evidence-tile .tile-hint {
+  font-size: 0.75rem;
+  color: var(--ld-pop);
+  font-weight: 700;
+}
+
+/* Revealed Tile */
+.evidence-tile.revealed {
+  background: var(--ld-paper);
+  text-align: left;
+}
+
+.evidence-tile.revealed .tile-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+  border-bottom: 1px solid var(--ld-moss);
+  padding-bottom: 0.5rem;
+}
+
+.evidence-tile.revealed .tile-icon {
+  font-size: 1.25rem;
+  margin-bottom: 0;
+}
+
+.evidence-tile.revealed .tile-label {
+  font-size: 0.875rem;
+}
+
+.tile-description {
+  font-size: 0.8rem;
+  color: var(--ld-forest);
+  line-height: 1.4;
+  margin-bottom: 0.5rem;
+}
+
+.tile-features {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.tile-features li {
+  font-size: 0.75rem;
+  color: var(--ld-ink);
+  font-weight: 600;
+  padding: 0.125rem 0;
+}
+
+.tile-features li::before {
+  content: "✓ ";
+  color: var(--ld-leaf);
+}
+
+/* Guess Section */
+.guess-section {
+  background: var(--ld-paper);
+  border: var(--border-thick);
+  border-radius: 16px;
+  padding: 1.5rem;
+}
+
+.guess-interface {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* Species Selector */
+.species-selector {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.species-search {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: var(--border-thin);
+  border-radius: 8px;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  background: white;
+}
+
+.species-search:focus {
+  outline: none;
+  border-color: var(--ld-pop);
+}
+
+.species-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 0.5rem;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.species-option {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0.5rem 0.75rem;
+  background: var(--ld-cream);
+  border: 2px solid transparent;
+  border-radius: 6px;
+  cursor: pointer;
+  text-align: left;
+  transition: border-color var(--transition-fast);
+}
+
+.species-option:hover {
+  border-color: var(--ld-moss);
+}
+
+.species-option.selected {
+  border-color: var(--ld-pop);
+  background: white;
+}
+
+.species-name {
+  font-weight: 700;
+  font-size: 0.875rem;
+  color: var(--ld-ink);
+}
+
+.species-family {
+  font-size: 0.75rem;
+  color: var(--ld-forest);
+  text-transform: capitalize;
+}
+
+/* Confidence Selector */
+.confidence-selector {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.confidence-label {
+  font-weight: 700;
+  color: var(--ld-ink);
+}
+
+.confidence-options {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.confidence-btn {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0.75rem;
+  background: var(--ld-cream);
+  border: 2px solid transparent;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.confidence-btn:hover {
+  border-color: var(--ld-moss);
+}
+
+.confidence-btn.selected {
+  border-color: var(--ld-leaf);
+  background: white;
+}
+
+.confidence-btn.risky.selected {
+  border-color: var(--ld-pop);
+}
+
+.conf-percent {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  color: var(--ld-ink);
+}
+
+.conf-mult {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--ld-leaf);
+}
+
+.confidence-btn.risky .conf-mult {
+  color: var(--ld-pop);
+}
+
+.risk-warning {
+  font-size: 0.875rem;
+  color: var(--ld-pop);
+  font-weight: 600;
+  text-align: center;
+}
+
+/* Submit Button */
+.submit-guess-btn {
+  width: 100%;
+  padding: 1rem;
+  background: var(--ld-pop);
+  color: white;
+  font-family: var(--font-body);
+  font-size: 1.125rem;
+  font-weight: 800;
+  border: var(--border-thick);
+  border-radius: 8px;
+  box-shadow: var(--shadow-md);
+  cursor: pointer;
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.submit-guess-btn:hover:not(:disabled) {
+  transform: translate(-2px, -2px);
+  box-shadow: var(--shadow-lg);
+}
+
+.submit-guess-btn:active:not(:disabled) {
+  transform: translate(2px, 2px);
+  box-shadow: var(--shadow-sm);
+}
+
+.submit-guess-btn:disabled {
+  background: var(--ld-forest);
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .evidence-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .species-list {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,128 @@
+/**
+ * Title Scene Styles
+ */
+
+.title-scene {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 2rem;
+  gap: 2rem;
+}
+
+/* Header */
+.title-header {
+  text-align: center;
+}
+
+.game-title {
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 8vw, 4rem);
+  color: var(--ld-ink);
+  text-shadow: 
+    4px 4px 0px var(--ld-mint),
+    6px 6px 0px var(--ld-ink);
+  margin-bottom: 0.5rem;
+  letter-spacing: 0.05em;
+}
+
+.tagline {
+  font-size: 1.25rem;
+  color: var(--ld-forest);
+  font-style: italic;
+  font-weight: 600;
+}
+
+/* Mode Selection */
+.mode-selection {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 100%;
+  max-width: 400px;
+}
+
+.mode-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--ld-paper);
+  border: var(--border-thick);
+  border-radius: 16px;
+  box-shadow: var(--shadow-md);
+  padding: 1.5rem;
+  cursor: pointer;
+  transition: 
+    transform var(--transition-fast),
+    box-shadow var(--transition-fast);
+}
+
+.mode-card:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: var(--shadow-lg);
+}
+
+.mode-card:active {
+  transform: translate(2px, 2px);
+  box-shadow: var(--shadow-sm);
+}
+
+.mode-icon {
+  font-size: 2.5rem;
+}
+
+.mode-name {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  color: var(--ld-ink);
+}
+
+.mode-desc {
+  font-size: 0.875rem;
+  color: var(--ld-forest);
+  text-align: center;
+}
+
+/* Actions */
+.title-actions {
+  display: flex;
+  gap: 1rem;
+}
+
+.btn-secondary {
+  background: var(--ld-mint);
+  color: var(--ld-ink);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 700;
+  padding: 0.75rem 1.5rem;
+  border: var(--border-thick);
+  border-radius: 8px;
+  box-shadow: var(--shadow-sm);
+  cursor: pointer;
+  transition: 
+    transform var(--transition-fast),
+    box-shadow var(--transition-fast);
+}
+
+.btn-secondary:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: var(--shadow-md);
+}
+
+.btn-secondary:active {
+  transform: translate(2px, 2px);
+  box-shadow: none;
+}
+
+/* Footer */
+.title-footer {
+  margin-top: auto;
+  padding-top: 2rem;
+  text-align: center;
+  color: var(--ld-forest);
+  font-size: 0.875rem;
+}
